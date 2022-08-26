@@ -37,25 +37,25 @@ class Posts extends Component {
             {posts.map((post, i) => {
             
           
-            const obj = post.comments
-            const newComm = obj[post.comments.length - 1]
+            const obj = post['comments']
+            const newComm = obj[0]
               
-          const posterFull = post.postedBy ? post.postedBy.fullName : " Unknown"
-          const posterUser = post.postedBy ? post.postedBy.username : " Unknown"
+          const posterFull = post.user ? post.user.fullName : " Unknown"
+          const posterUser = post.user ? post.user.username : " Unknown"
         return (
             <div className="card mb-2" style={{boxShadow: "2px 5px #5f0f40"}} key={i}>
   <div className="card-body">
    <div className="card-title"> 
      <Link className="d-flex mx-2 mb-0" to={`/ul/${posterUser}`}>
     
-       {post.postedBy.imgId ? <Image cloudName="favoursoar" publicId={post.postedBy.imgId} style={{width: '50px', height: '50px', objectFit: 'cover', borderRadius: '50%'}}/> :
+       {post.user.imgId ? <Image cloudName="favoursoar" publicId={post.user.imgId} style={{width: '50px', height: '50px', objectFit: 'cover', borderRadius: '50%'}}/> :
           <i className="fa-solid fa-user mx-3" style={{color: "#5f0f40", fontSize: "50px"}}></i>
           }
       <div className="mx-2">
        <p className="fw-bold lead mb-0" style={{color: "#5f0f40"}}>{posterFull}</p><p className="font-italic" style={{color: "#5f0f40"}}>{posterUser}</p>
         </div>
      </Link>
-     <p style={{color: "#5f0f40"}} className="mb-1">Posted on {new Date(post.created).toDateString()}</p>
+     <p style={{color: "#5f0f40"}} className="mb-1">Posted on {new Date(post.createdAt).toDateString()}</p>
      <hr style={{color: "#5f0f40"}}></hr>
    </div>
             {post.body.length > 150 && this.state.more ? <p className="card-text">{post.body.substring(0, 150)}...<span style={{cursor: "pointer", color: "#5f0f40"}} onClick={() => this.setState({more: !this.state.more})}>see more</span></p> : <p className="card-text">{post.body}</p>}
@@ -68,10 +68,10 @@ class Posts extends Component {
     <hr></hr>
     <div className="row">
       <div className="col-xl-10 col-sm-6">
-    <Like postId={post._id} likeArr={post.likes} likeCount={post.likes.length}/>
+    {/* <Like postId={post._id} likeArr={post.likes} likeCount={post.likes.length}/> */}
         </div>
      
-     {post.comments.length === 1 ? <Link className="col-xl-2 col-sm-6 lead" style={{color: "#5f0f40"}} to={`/post/${post._id}`}>{post.comments.length} comment</Link> : <Link className="col-xl-2 col-sm-6 lead" style={{color: "#5f0f40"}} to={`/post/${post._id}`}>{post.comments.length} comments</Link>}
+     {post.comments.length === 1 ? <Link className="col-xl-2 col-sm-6 lead" style={{color: "#5f0f40"}} to={`/post/${post.id}`}>{post.comments.length} comment</Link> : <Link className="col-xl-2 col-sm-6 lead" style={{color: "#5f0f40"}} to={`/post/${post.id}`}>{post.comments.length} comments</Link>}
         
       </div>
   </div>
@@ -79,16 +79,16 @@ class Posts extends Component {
        {newComm ?  <div className="card mx-5 mb-5 px-5">
   <div className="card-body">
    <div className="card-title"> 
-     <Link className="d-flex mx-2 mb-0" to={`/ul/${newComm.postedBy.username}`}>
+     <Link className="d-flex mx-2 mb-0" to={`/ul/${newComm.user.username}`}>
     
-       {newComm.postedBy.imgId ? <Image cloudName="favoursoar" publicId={newComm.postedBy.imgId} style={{width: '50px', height: '50px', objectFit: 'cover', borderRadius: '50%'}}/> :
+       {newComm.user.imgId ? <Image cloudName="favoursoar" publicId={newComm.user.imgId} style={{width: '50px', height: '50px', objectFit: 'cover', borderRadius: '50%'}}/> :
           <i className="fa-solid fa-user mx-3" style={{color: "#5f0f40", fontSize: "50px"}}></i>
           }
       <div className="mx-2">
-       <p className="fw-bold lead mb-0" style={{color: "#5f0f40"}}>{newComm.postedBy.fullName}</p><p className="font-italic" style={{color: "#5f0f40"}}>{newComm.postedBy.username}</p>
+       <p className="fw-bold lead mb-0" style={{color: "#5f0f40"}}>{newComm.user.fullName}</p><p className="font-italic" style={{color: "#5f0f40"}}>{newComm.user.username}</p>
         </div>
      </Link>
-     <p style={{color: "#5f0f40"}} className="mb-1">Commented on {new Date(newComm.created).toDateString()}</p>
+     <p style={{color: "#5f0f40"}} className="mb-1">Commented on {new Date(newComm.createdAt).toDateString()}</p>
      <hr style={{color: "#5f0f40"}}></hr>
    </div>
              <p className="card-text">{newComm.text}</p>

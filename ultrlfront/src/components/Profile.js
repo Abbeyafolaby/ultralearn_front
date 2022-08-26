@@ -12,7 +12,7 @@ class Profile extends Component {
   constructor() {
     super() 
     this.state = {
-      user: { following: [], followers: [] },
+      user: {},
       redirectToSignin: false,
       loading: true,
       following: false,
@@ -20,27 +20,27 @@ class Profile extends Component {
       posts: []
     }
   }
-  checkFollow = user => {
-    const jwt = isAuthenticated()
-    const match = user.followers.find(follower => {
-      // one id has  many other ids (followers) and vice versa
-      return follower._id === jwt.user._id
-    })
-    return match
-  }
+  // checkFollow = user => {
+  //   const jwt = isAuthenticated()
+  //   const match = user.followers.find(follower => {
+  //     // one id has  many other ids (followers) and vice versa
+  //     return follower._id === jwt.user._id
+  //   })
+  //   return match
+  // }
 
-  clickFollow = callApi => {
-    const userId = isAuthenticated().user._id
-    const token = isAuthenticated().token
-    callApi(userId, token, this.state.user._id)
-    .then(data => {
-      if (data.error) {
-        this.setState({error: data.error})
-      } else {
-        this.setState({user: data, following: !this.state.following})
-      }
-    })
-  }
+  // clickFollow = callApi => {
+  //   const userId = isAuthenticated().user._id
+  //   const token = isAuthenticated().token
+  //   callApi(userId, token, this.state.user._id)
+  //   .then(data => {
+  //     if (data.error) {
+  //       this.setState({error: data.error})
+  //     } else {
+  //       this.setState({user: data, following: !this.state.following})
+  //     }
+  //   })
+  // }
 
   init = (name) => {
     const token = isAuthenticated().token
@@ -49,8 +49,8 @@ class Profile extends Component {
       if (data.error) {
         this.setState({ redirectToSignin: true })
       } else {
-        let following = this.checkFollow(data)
-        this.setState({ user: data, following })
+        // let following = this.checkFollow(data)
+        this.setState({ user: data }) //,following
         this.setState({ loading: false})
         this.loadPosts(data.username)
       }
@@ -79,7 +79,7 @@ class Profile extends Component {
   }
   
   render() {
-    const {redirectToSignin, user, loading, posts} = this.state
+    const {redirectToSignin, user, loading, posts}  = this.state 
     if(redirectToSignin) return <Redirect to="/signin"/>
 
     
@@ -107,10 +107,10 @@ class Profile extends Component {
         <p>{user.username}</p>
             <p className="fw-bold" style={{color: "#5f0f40"}}>{user.bio}</p> 
             <p style={{display: user.location ? "" : "none", color: "#5f0f40"}}><i className='fas fa-map-marker-alt'></i>{` ${user.location}, Nigeria`}</p>
-        <p style={{display: user.created ? "" : "none", color: "#5f0f40"}}><i class='far fa-calendar-alt'></i>{` Joined ${new Date(user.created).toDateString()}`}</p>
-            {user.followers.length === 1 ? <p className="fw-bold" style={{display: user.followers ? "" : "none", color: "#5f0f40"}}>{`${user.followers.length} Follower, ${user.following.length} Following`}</p>
+        <p style={{display: user.createdAt ? "" : "none", color: "#5f0f40"}}><i class='fas fa-calendar-alt'></i>{` Joined ${new Date(user.createdAt).toDateString()}`}</p>
+            {user.followers_len === 1 ? <p className="fw-bold" style={{color: "#5f0f40"}}>{`${user.followers_len} Follower, ${user.following_len} Following`}</p>
             :
-              <p className="fw-bold" style={{display: user.followers ? "" : "none", color: "#5f0f40"}}>{`${user.followers.length} Followers, ${user.following.length} Following`}</p>
+              <p className="fw-bold" style={{color: "#5f0f40"}}>{`${user.followers_len} Followers, ${user.following_len} Following`}</p>
             }
         </div>
           <div className="col-sm-2">
@@ -118,7 +118,7 @@ class Profile extends Component {
               <Link className="btn btn-outline btn-lg" to={`/edit/${isAuthenticated().user.username}`}>Edit Profile</Link>
           ) :
             <div style={{display: user.fullName ? "" : "none"}}>
-             <FollowButton following={this.state.following} onButtonClick={this.clickFollow} />
+             {/* <FollowButton following={this.state.following} onButtonClick={this.clickFollow} /> */}
             </div>
           }
             </div>
