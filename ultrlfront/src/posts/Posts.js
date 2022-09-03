@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { list } from './apiPost'
 import { Link } from 'react-router-dom'
 import { Image } from 'cloudinary-react'
-import Like from '../assets/Like.png'
-import comment from '../assets/comment.png'
+// import Like from '../assets/Like.png'
+// import comment from '../assets/comment.png'
 // import NewPost from './NewPost'
 import avatarImage from "../assets/avatar.jpg"
 import Verticalicon from "../components/verticalicon"
@@ -78,7 +78,7 @@ class Posts extends Component {
                     </span>
                     <span>
                     {/* <div className='-mt-15 float-right '>  <Verticalicon/></div> */}
-                    { ( userId == post.user.id)? <div className='-mt-15 float-right '>  <Verticalicon/> </div>:  ""}
+                    { ( userId === post.user.id)? <div className='-mt-15 float-right '>  <Verticalicon/> </div>:  ""}
 
                     </span>
 

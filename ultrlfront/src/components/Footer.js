@@ -1,5 +1,5 @@
-import appstore from "../assets/appstore.png"
-import playstore from "../assets/playstore.png"
+// import appstore from "../assets/appstore.png"
+// import playstore from "../assets/playstore.png"
 import facebook from "../assets/🦆 icon _facebook_.png"
 import youtube from "../assets/🦆 icon _youtube_.png"
 import linkedin from "../assets/🦆 icon _linkedin original_.png"
