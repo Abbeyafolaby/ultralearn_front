@@ -1,4 +1,5 @@
 import Nav from "./Nav3"
+import Nav2 from './Nav2'
 import React, { Component } from 'react'
 import { isAuthenticated } from '../auth'
 import {Redirect} from 'react-router-dom'
