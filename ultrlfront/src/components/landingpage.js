@@ -1,49 +1,58 @@
+import Nav from "./Nav3"
+import React, { Component } from 'react'
+import { isAuthenticated } from '../auth'
+import { Link } from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
+import bgimage from "../assets/social-media-ads-27 2.png"
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
-         
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet"href="bootstrap.min.css">
-    <link rel="stylesheet" href="landingpage.css">
 
-</head>
-<body>
-    <!-- As a heading -->
-<nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">UltraLEARN</span>
-    </div>
-  </nav>
-    <main>
-        <div class="container shadow-lg p-3 mb-5 bg-body rounded "> 
-        <h1 class="display-1 ">UltraLearn is coming!</h1>
-       <p class="display-6"> A platform for learning skills </p>
-        <p class="display-6">To know more about it join the waitlist</p> 
-        <div class="center">
-            <form action="https://eepurl.com/h3340f">
-                <!-- Begin Mailchimp Signup Form -->
-         <button class="btn-submit">Join the waitlist</button>
-            </form>
+
+
+class Landingpage extends Component {
+  constructor() {
+    super()
+    this.state = {
+      email: ""
+    }
+  }
+  styles = {
+    div: {
+        backgroundImage: `url(${bgimage})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        width: '100%',
+        height: '100%'
+    }
+}
+
+
+
+  
+  
+  render() {
+    const { redirectToProfile} = this.state
+
+    if (redirectToProfile) {
+      return <Redirect to={`/users/${isAuthenticated().user.username}`}></Redirect>
+    }
+    return (
+      <div>
+        <Nav/>
+        <div className="grid grid-cols-2">
+            <div className="col-span-2 md:col-span-1">
+            <div className="  bg-contain"style={{ backgroundImage:`url(${bgimage})` }}></div>
+
             </div>
+            <div className="">
+
+
+            </div>
+
         </div>
-           <div class="container center shadow-lg p-3 mb-5 bg-body rounded">
-               <img src="Business.jpg"class="img-fluid " alt="Business">
-               <img src="IT.jpg" class="img-fluid" alt="IT">
-               <img src="medicine.png" class="img-fluid " alt="Medicine">
-               <img src="softskills.jpg" class="img-fluid" alt="softskills">
-               <img src="digital skills.jpg" class="img-fluid"alt="digital skills">
-               <img src ="arts and crafts.jpg" class="img-fluid" alt="arts and crafts">
-               <img src="languages.jpg" class="img-fluid" alt="languages">
-               <img src="img_recordplayer.jpg"class="img-fluid"alt="books">
-               <img src="bg school 3.jfif"class="img"alt="books">
-           </div>
+      </div>
+    );
+  }
+}
 
-
-    </main>
-</body>
-</html> 
+export default Landingpage

@@ -12,7 +12,7 @@ const Footer = () => {
     <div className=" md:justify-center ">
         <div className="grid grid-cols-4 gap-10 sm:gap-6 sm:grid-cols-3 mb-4">
             <div className="">
-
+{/* 
                 <ul className=" justify-items-start inline-block">
                     <li className="mb-4 ul-purple text-1xl font-semibold ">
                     <a href="/terms" className="ul-purple text-1xl font-semibold">Terms</a>
@@ -23,15 +23,15 @@ const Footer = () => {
                     <li>
                         <a href="/contact" className="ul-purple text-1xl font-semibold">Help</a>
                     </li>
-                </ul>
+                </ul> */}
             </div>
             <div>
-                <ul classNameName=" ">
+                {/* <ul classNameName=" ">
                     <li className="mb-4 ul-purple text-1xl font-semibold"><a href="/contact" className="">Contact Us</a></li>
-                    {/* <li className="mb-4 ul-purple text-1xl font-semibold">
+                    <li className="mb-4 ul-purple text-1xl font-semibold">
                         <a href="/" className="">About Us</a>
-                    </li> */}
-                </ul>
+                    </li>
+                </ul> */}
             </div>
             {/* <div className="">
                 <h2 className ="mb-7 ul-purple text-1xl font-semibold">Mobile App</h2>
@@ -47,7 +47,7 @@ const Footer = () => {
         </div>
     </div>
     <div className="sm:flex sm:items-center sm:justify-between  text-xl">
-        <span className=" sm:text-center ul-purple ">© 2022 <a href="" className="">UltraLearn Inc. All rights reserved</a>
+        <span className=" sm:text-center ul-purple ">© 2022 <a href="https://flowbite.com/" className="">UltraLearn Inc. All rights reserved</a>
         </span>
         <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
             <a href="https://www.facebook.com/profile.php?id=100081860272267" className="">
